@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let humanScore = 0;
+        let computerScore = 0;
+        let humanChoice, computerChoice;
+
+        function getComputerChoice() {
+            const choice = Math.floor(Math.random() *3);
+            console.log(choice);
+            switch (choice) {
+                case 0:
+                    return "rock";
+                case 1:
+                    return "paper";
+                case 2:
+                    return "scissors"
+            }
+        }
+            
+        function getHumanChoice() {
+            let sign = prompt("Rock, Paper, Scissors");
+            return sign;
+        }
+
+        function playRound() {
+            computerChoice = getComputerChoice();
+            humanChoice = getHumanChoice();
+
+            if (humanChoice == "rock") {
+                if (computerChoice == "paper") {
+                    computerScore++;
+                }
+                else if (computerChoice == "scissors") {
+                    humanScore++;
+                }
+            }
+            else if (humanChoice == "paper") {
+                if (computerChoice == "scissors") {
+                    computerScore++;
+                }
+                else if (computerChoice == "rock") {
+                    humanScore++;
+                }
+            }
+            else if (humanChoice == "scissors") {
+                if (computerChoice == "rock") {
+                    computerScore++;
+                }
+                else if (computerChoice == "paper") {
+                    humanScore++;
+                }
+            }
+
+
+        }
+        playRound();
+        playRound();
+        playRound();
+        playRound();
+        playRound();
+        alert("Human:" + humanScore);
+        alert("Computer: " + computerScore);
+    </script>
+</body>
+</html>
