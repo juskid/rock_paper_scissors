@@ -6,10 +6,45 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="buttonDiv">
+        <button id="rock">
+            rock
+        </button>
+        <button id="paper">
+            paper
+        </button>
+        <button id="scissors">
+            scissors
+        </button>
+    </div>
+    <div id="scoreDiv">
+        <h2>SCOREBOARD</h2>
+        <table>
+          <tr>
+            <th>YOU</th>
+            <th>COMPUTER</th>
+          </tr>
+          <tr>
+            <td id="pScore">0</td>
+            <td id="cScore">0</td>
+          </tr>
+          <tr>
+            <td id="pChoice">-</td>
+            <td id="cChoice">-</td>
+          </tr>
+        </table>
+    </div>
+    <div id="resultDiv">
+        <h2>Results:</h2>
+        <h3 id="result">Play a round!</h3>
+    </div>
+    
     <script>
         let humanScore = 0;
         let computerScore = 0;
-        let humanChoice, computerChoice;
+        let count = 0;
+        let computerChoice;
+        //initialize rock,paper,scissor buttons
 
         function getComputerChoice() {
             const choice = Math.floor(Math.random() *3);
@@ -29,9 +64,9 @@
             return sign;
         }
 
-        function playRound() {
+        function playRound(humanChoice) {
             computerChoice = getComputerChoice();
-            humanChoice = getHumanChoice();
+            //humanChoice = getHumanChoice(); may add later
 
             if (humanChoice == "rock") {
                 if (computerChoice == "paper") {
@@ -57,16 +92,19 @@
                     humanScore++;
                 }
             }
+            console.log("round over");
+        }
 
+        function game(e) {
+            let result = playRound(this.id);
 
         }
-        playRound();
-        playRound();
-        playRound();
-        playRound();
-        playRound();
-        alert("Human:" + humanScore);
-        alert("Computer: " + computerScore);
+
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) => button.addEventListener('click', game));
+
+        //alert("Human:" + humanScore);
+        //alert("Computer: " + computerScore);
     </script>
 </body>
 </html>
