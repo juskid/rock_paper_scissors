@@ -43,8 +43,15 @@
         let humanScore = 0;
         let computerScore = 0;
         let count = 0;
-        let computerChoice;
-        //initialize rock,paper,scissor buttons
+        let computerChoice, humanChoice;
+        let tempHScore = humanScore;
+        let tempCScore = computerScore;
+        
+        const pScore = document.querySelector("#pScore");
+        const cScore = document.querySelector("#cScore");
+        const pChoice = document.querySelector("#pChoice");
+        const cChoice = document.querySelector("#cChoice");
+        const result = document.querySelector("#result");
 
         function getComputerChoice() {
             const choice = Math.floor(Math.random() *3);
@@ -96,8 +103,23 @@
         }
 
         function game(e) {
-            let result = playRound(this.id);
+            playRound(this.id);
+            pScore.textContent = `${humanScore}`;
+            cScore.textContent = `${computerScore}`;
+            pChoice.textContent = `${this.id}`;
+            cChoice.textContent = `${computerChoice}`;
 
+            if (tempHScore < humanScore) {
+                tempHScore = humanScore;
+                result.textContent = "You Win!";
+            }
+            if (tempCScore < computerScore) {
+                tempCScore = computerScore
+                result.textContent = "Shit!";
+            }
+            if (humanScore >=5 || computerScore >= 5) {
+                location.reload();
+            }
         }
 
         const buttons = document.querySelectorAll('button');
